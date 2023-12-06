@@ -1,0 +1,13 @@
+.text {
+    color: white;
+    font-family: "Inter-Regular", Helvetica;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  .color-frame{
+    background-color: #30333A;
+  }
+  .color-frame-layers{
+    background-color: #444952;
+  }

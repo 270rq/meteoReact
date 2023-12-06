@@ -1,21 +1,120 @@
-.inf{
-    display: inline-flex;
-height: 659px;
-flex-direction: column;
-align-items: flex-start;
-gap: 15px;
-flex-shrink: 0;
+.main-cont {
+  margin-top: 2.5rem;
+  display: flex;
 }
-.inform{
-    position: relative;
-    width: 640px;
-height: 322px;
-flex-shrink: 0;
-border-radius: 20px;
-background: #30333A;
+
+.inf {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Добавьте это свойство для выравнивания по вертикали */
+  gap: 15px;
+  height: 659px;
+  flex-shrink: 0;
 }
-.di{
-    width: 293px;
-height: 293px;
-flex-shrink: 0;
+.inform {
+  position: relative;
+  width: 640px;
+  height: 322px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  background: #30333a;
+}
+.di {
+  width: 293px;
+  height: 293px;
+  flex-shrink: 0;
+}
+.rec-text {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Добавьте это свойство для выравнивания по вертикали */
+  gap: 33px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  width: 640px;
+  height: 307px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.cont {
+  width: 262px;
+  height: 41px;
+  display: flex;
+  flex-shrink: 0;
+}
+.icon-rec {
+  width: 3rem;
+  height: auto;
+  margin-right: 1rem;
+}
+.map-container {
+  position: relative;
+  width: 640px;
+  height: 658px;
+  margin-left: 2.1rem;
+  margin-right: 1rem;
+}
+.leaflet-control-container .leaflet-routing-container-hide {
+  display: none;
+}
+#map {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  
+}
+.select-cont {
+  width: 172px;
+  height: 178px;
+  position: absolute;
+  inset: 5% 0 0 5%;
+  border-radius: 10px;
+  background: #444952;
+  z-index: 999;
+}
+.genre-text {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.name-text {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.genre-select {
+  position: absolute;
+  width: 155px;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.name-select {
+  position: absolute;
+  width: 155px;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.map-ok {
+  position: absolute;
+  border: none;
+  width: 106px;
+  height: 22px;
+  top: 70%;
+  left: 50%;
+  border-radius: 10px;
+  background: #3e92e0;
+  transform: translateX(-50%);
+  position: absolute;
+}
+.di {
+  position: absolute;
+  top: 10%;
+  left: 5%;
 }
