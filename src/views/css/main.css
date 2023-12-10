@@ -456,7 +456,12 @@ transform: translateY(-50%);
   height: 20px;
   flex-shrink: 0;
 }
-
+.week-weather{
+  display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: flex-start;
+}
 @media (max-width: 768px) {
   .frame {
     margin: auto 20px;

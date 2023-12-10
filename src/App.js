@@ -7,10 +7,8 @@ import './views/css/main.css'
 
 function App() {
   return (
-    <div className="App">
-      <body id='root'>
+    <div className="App"  id='root1'>
       <MainWeather/>
-      </body>
     </div>
   );
 }

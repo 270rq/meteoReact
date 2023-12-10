@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { Doughnut } from "react-chartjs-2";
+import { Chart, ArcElement, DoughnutController } from "chart.js";
 import sun_col from "./weather 3d/01_sunny_color.svg";
 import map_pin from "./icon/map-pin.svg";
 import date from "./icon/date.svg";
@@ -12,54 +14,109 @@ import degress from "./icon/degress.svg";
 import compas from "./icon/compas.svg";
 import arrow from "./icon/arrow(1).svg";
 import Header from "./header";
+import axios from "axios";
 const MainWeather = () => {
-  const [temperature, setTemperature] = useState(0);
-
-  const handleTemperatureUpdate = () => {
-    // Логика для обновления температуры
+  const [data, setData] = useState([[]]);
+  Chart.register(ArcElement, DoughnutController);
+  const search = (query)=>{
+    console.log(query);
   };
+  useEffect( () => {
+    async function getGeoLocation() {
+      try {
+        const response = await axios.get("http://ip-api.com/json?lang=ru");
+        const { city, regionName } = response.data;
+        console.log("Город:", city);
+        console.log("Регион:", regionName);
 
-  const uvIndexValues = [
-    { value: 0, className: "zero", style: { left: "6%", top: "83%" } },
-    { value: 2, className: "two", style: { left: "14%", top: "46%" } },
-    { value: 4, className: "four", style: { left: "26%", top: "20%" } },
-    { value: 6, className: "six", style: { left: "50%", top: "10%" } },
-    { value: 8, className: "eight", style: { left: "70%", top: "20%" } },
-    { value: 10, className: "ten", style: { left: "80%", top: "46%" } },
-    { value: 12, className: "twelve", style: { left: "88%", top: "83%" } },
-  ];
-  
-  useEffect(() => {
-    const startDay =new Date(2023,11,5,14,50,50);
-    const endDay =new Date(2023,11,5,15,10,50);
-    const sunIcon = document.querySelector(".sun-icon-cont");
-    
-    const totalDuration = (endDay - startDay )* 1000; // Общая продолжительность дня в секундах
-    const animationDuration = 1; // Продолжительность анимации в секундах
-    
-    const animateSun = () => {
-      const currentTime = new Date();
-      const secondsSinceMidnight =( currentTime - startDay) * 1000 ;
-    
-      const sunPosition = (secondsSinceMidnight / totalDuration) * 180;
-      sunIcon.style.transform = `rotate(${sunPosition}deg)`;
+        const day = new Date();
+        const year = day.getFullYear();
+        const month = String(day.getMonth() + 1).padStart(2, "0");
+        const date = String(day.getDate()).padStart(2, "0");
+        const formattedDate = `${year}-${month}-${date}`;
+        const url = `https://localhost:7024/WeatherDay?Day=${formattedDate}&City=${city}&Region=${regionName}`;
+        const weatherResponse = await axios.get(url);
+        setData(weatherResponse.data);
+        console.log(weatherResponse.data);
+        const startDay = new Date();
+        const endDay = new Date();
+        const timeStartString = weatherResponse.data[0]["sunrise"];
+        const [hoursS, minutesS, secondsS] = timeStartString.split(":").map(Number);
+        const timeEndString = weatherResponse.data[0]["sunset"];
+        const [hoursE, minutesE, secondsE] = timeEndString.split(":").map(Number);
+        startDay.setHours(hoursS);
+        startDay.setMinutes(minutesS);
+        startDay.setSeconds(secondsS);
+        endDay.setHours(hoursE);
+        endDay.setMinutes(minutesE);
+        endDay.setSeconds(secondsE);
+        const sunIcon = document.getElementById("icon_anim");
+        console.log(sunIcon)
+        const totalDuration = (endDay - startDay) * 1000; // Общая продолжительность дня в секундах
+        const animationDuration = 1; // Продолжительность анимации в секундах
+      
+        const animateSun = () => {
+          const currentTime = new Date();
+          const secondsSinceMidnight = (currentTime - startDay) * 1000;
+      
+          const sunPosition = (secondsSinceMidnight / totalDuration) * 180;
+          sunIcon.style.transform = `rotate(${sunPosition}deg)`;
+        };
+      
+        const interval = setInterval(animateSun, animationDuration * 1000);
+        return weatherResponse.data;
+      } catch (error) {
+        console.error(
+          "Ошибка при получении геолокации или отправке запроса:",
+          error
+        );
+      }
+    }
+    getGeoLocation().then();
+
+  }, []);
+  const UvDi = ({ uvIndex }) => {
+    const data = {
+      labels: ["UVIndex", "Категория 1"],
+      datasets: [
+        {
+          data: [uvIndex, 12 - uvIndex],
+          backgroundColor: ["blue", "grey"],
+          borderWidth: 0,
+        },
+      ],
     };
-    
-    const interval = setInterval(animateSun, animationDuration * 1000);
-    
-    return () => clearInterval(interval);
-    
-    }, []);
+    const options = {
+      layout: {
+        padding: 10,
+      },
+      plugins: {
+        legend: false,
+        datalabels: {
+          display: false,
+        },
+      },
+      maintainAspectRatio: false,
+      responsive: true,
+      rotation: -90,
+      cutoutPercentage: 40,
+      circumference: 180,
+    };
+
+    return <Doughnut data={data} options={options} />;
+  };
   return (
     <>
-      <Header/>
+      <Header />
       <div className="frame">
         <div className="main-weather">
           <div className="color-frame weather">
             <div className="weather-icon">
               <img id="weather-icon-image" src={sun_col} alt="Weather Icon" />
             </div>
-            <div className="text temp-text" id="temp-now"></div>
+            <div className="text temp-text" id="temp-now">
+              {data[0]["temperatureC"]}
+            </div>
             <div className="search-cont">
               <div className="color-frame-layers search">
                 <input
@@ -67,7 +124,7 @@ const MainWeather = () => {
                   type="text"
                   className="search_city"
                   placeholder="Поиск "
-                  oninput="search(event.target.value)"
+                  onInput={(event) =>search(event.target.value)}
                 ></input>
                 <a className="search-button">
                   <i className="fas fa-search"></i>
@@ -78,7 +135,9 @@ const MainWeather = () => {
           </div>
           <div className="color-frame meta">
             <img className="icon-map" src={map_pin} />
-            <div className="text geo-text" id="geo-now"></div>
+            <div className="text geo-text" id="geo-now">
+              {}
+            </div>
             <img className="icon-date" src={date} />
             <div className="text date-text" id="date-now"></div>
           </div>
@@ -88,10 +147,12 @@ const MainWeather = () => {
           <div className="weather-param">
             <div className="color-frame-layers big-param">
               <div className="text big-param-text">Ветер</div>
-              <div className="text wind_speed-text" id="wind_speed-now"></div>
+              <div className="text wind_speed-text" id="wind_speed-now">
+                {data[0]["speedWind"]}
+              </div>
               <div className="compas-cont">
-              <img className="compas" src={compas} alt="Compas Icon" />
-              <img className="compas-arrow" src={arrow} alt="Arrow Icon" />
+                <img className="compas" src={compas} alt="Compas Icon" />
+                <img className="compas-arrow" src={arrow} alt="Arrow Icon" />
               </div>
             </div>
             <div className="color-frame-layers litle-param">
@@ -99,30 +160,20 @@ const MainWeather = () => {
               <div className="icon dop-i">
                 <img src={drop} alt="Humidity Icon" />
               </div>
-              <div className="text number-text" id="wet-now"></div>
-              <div
-                className="text litle-param-dop-text"
-                id="dewPoint-now"
-              ></div>
+              <div className="text number-text" id="wet-now">
+                {data[0]["precipitation"]}
+              </div>
+              <div className="text litle-param-dop-text" id="dewPoint-now">{data[0][""]}</div>
             </div>
           </div>
           <div className="weather-param">
             <div className="color-frame-layers big-param">
               <div className="text big-param-text">UV индекс</div>
-              <div className="text uv-text" id="uv-now"></div>
+              <div className="text uv-text" id="uv-now">
+                {data[0]["uvIndex"]}
+              </div>
               <div className="icon-diagram">
-                <img src="icon/diagram.svg" alt="UV Index Diagram" />
-                <div className="num-diagram">
-                  {uvIndexValues.map((item, index) => (
-                    <div
-                      key={index}
-                      className={`text ${item.className}`}
-                      style={item.style}
-                    >
-                      {item.value}
-                    </div>
-                  ))}
-                </div>
+                <UvDi uvIndex={data[0]["uvIndex"]} />
               </div>
             </div>
             <div className="color-frame-layers litle-param">
@@ -130,7 +181,7 @@ const MainWeather = () => {
               <div className="icon dop-i">
                 <img src={eye} alt="Visibility Icon" />
               </div>
-              <div className="text number-text" id="visi-now"></div>
+              <div className="text number-text" id="visi-now">{data[0]["visibility"]}</div>
             </div>
           </div>
           <div className="weather-param">
@@ -140,15 +191,16 @@ const MainWeather = () => {
                 <img src={sunrise} alt="Sunrise Icon" />
               </div>
               <div className="sun-text vos">Восход</div>
-              <div className="text sunrise-text" id="sunrise-now"></div>
+              <div className="text sunrise-text" id="sunrise-now">{data[0]["sunrise"]}</div>
               <div className="icon sunset">
                 <img src={sunset} alt="Sunset Icon" />
               </div>
               <div className="sun-text zah">Заход</div>
-              <div className="text sunset-text" id="sunset-now"></div>
+              <div className="text sunset-text" id="sunset-now">{data[0]["sunset"]}</div>
               <div className="icon-sunline">
-                <div className="sun-icon-cont">
-                <img src={sun} className="sun-icon" alt="Sun Icon" /></div>
+                <div className="sun-icon-cont" id="icon_anim">
+                  <img src={sun} className="sun-icon" alt="Sun Icon" />
+                </div>
                 <img src={sun_line} alt="Line Icon" />
               </div>
             </div>
@@ -157,13 +209,22 @@ const MainWeather = () => {
               <div className="icon degress">
                 <img src={degress} alt="Degrees Icon" />
               </div>
-              <div className="text litle-param-dop-text" id="feel-now"></div>
+              <div className="text litle-param-dop-text" id="feel-now">{data[0]["temperatureC"]}</div>
             </div>
           </div>
         </div>
         <div className="days-weather-container">
           <div className="text days-text">5 дней</div>
-          <div className="color-frame days-weather"></div>
+          <div className="color-frame days-weather">
+            <div className="week-weather">
+            <div className="one-day">
+            <img className="icon-weather" src={sun_col} alt="Weather Icon" />
+            <div className="text days-temp">29/17</div>
+            <div className="text date">13 сентября</div>
+            <div className="text week-day">Вторник</div>
+            </div>
+            </div>
+          </div>
         </div>
         <div className="hour-weather-container">
           <div className="text hour-text">Почасовая погода</div>

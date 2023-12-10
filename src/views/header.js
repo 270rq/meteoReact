@@ -1,19 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import profileIcon from './icon/profile.svg';
-import ReactDOM from 'react-dom';
 import Pollen from './pollen';
-
+import Profile from './profile.js';
+import root from '../index'
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('id'));
-  const [isHeaderActive, setHeaderActive] = useState(false)
-
+  const [isHeaderActive, setHeaderActive] = useState(false);
   const handleMouseOver = () => {
     setHeaderActive(true);
   };
 
   const handleMouseLeave = () => {    
     setHeaderActive(false);
-
   };
 
   const handleLogout = () => {
@@ -23,27 +21,27 @@ const Header = () => {
   };
 
   const handleGoToPollenPage = () => {
-    ReactDOM.render(
-      <React.StrictMode>
-        <Pollen />
-      </React.StrictMode>,
-      document.getElementById('root')
-    );
+    root.render(<Pollen/>  )
   };
 
+  const handleGoToProfilePage = () => {
+    root.render(<Profile/>  )
+
+
+  };
 
   return (
     <header onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave} className={`side-header ${isHeaderActive ? 'active' : "" }`} id="header">
       {isLoggedIn ? (
         <div>
-          <a href="profile.html" id="link">
+          <a href="profile.js" id="link">
             <img src={profileIcon} className="icon-profile" alt="Profile" />
           </a>
           <button onClick={handleLogout}>Выход</button>
         </div>
       ) : (
-        <a href="sign_in.html" id="link">
-          <button className="profile-button">
+        <a  id="link">
+          <button className="profile-button" onClick={handleGoToProfilePage}>
             <img src={profileIcon} className="icon-profile" alt="Profile" />
           </button>
         </a>

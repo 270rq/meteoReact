@@ -30,7 +30,6 @@ CREATE TABLE IF NOT EXISTS family (
   PRIMARY KEY (name)
 );
 
--- добавляем индекс на столбец name, но с другим именем
 CREATE TABLE IF NOT EXISTS flower (
   name VARCHAR(50) NOT NULL,
   family VARCHAR(50) NOT NULL,
@@ -48,7 +47,7 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 CREATE TABLE IF NOT EXISTS menu (
-  id DATETIME NOT NULL,
+  id DATETIME DEFAULT CURRENT_TIMESTAMP,
   city_id int NOT NULL,
   temperature INT NOT NULL,
   precipitation FLOAT NOT NULL,
@@ -65,7 +64,7 @@ CREATE TABLE IF NOT EXISTS map (
   name_flower VARCHAR(50) NOT NULL,
   x FLOAT NOT NULL,
   y FLOAT NOT NULL,
-  lvl ENUM('Нет пыльцы', 'Низкий', 'Средний','Высокий','Очень высокий') NOT NULL
+  lvl ENUM('Нет пыльцы', 'Низкий', 'Средний','Высокий','Очень высокий') NOT NULL,
   PRIMARY KEY (day, name_flower, x, y),
   CONSTRAINT fk_flower_name_map FOREIGN KEY (name_flower) REFERENCES flower(name)
 );
