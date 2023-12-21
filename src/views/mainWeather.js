@@ -66,6 +66,22 @@ const MainWeather = () => {
         const interval = setInterval(animateSun, animationDuration * 1000);
         return weatherResponse.data;
       } catch (error) {
+        setData([
+          {
+            "temperatureC": -5,
+            "temperatureF": 24,
+            "precipitation": 0.5,
+            "typeWind": "NE",
+            "speedWind": 10,
+            "uvIndex": 2,
+            "visibility": 10,
+            "sunrise": "08:30:00",
+            "sunset": "16:30:00",
+            "dewPoint": -25,
+            "visi_state": "совершенно неясно",
+            "weatherSensation": "Холодно: очень низкая температура"
+          }
+        ])
         console.error(
           "Ошибка при получении геолокации или отправке запроса:",
           error
@@ -89,6 +105,7 @@ const MainWeather = () => {
     const options = {
       layout: {
         padding: 10,
+        
       },
       plugins: {
         legend: false,
@@ -163,7 +180,7 @@ const MainWeather = () => {
               <div className="text number-text" id="wet-now">
                 {data[0]["precipitation"]}
               </div>
-              <div className="text litle-param-dop-text" id="dewPoint-now">{data[0][""]}</div>
+              <div className="text litle-param-dop-text" id="dewPoint-now">Точка росы: {data[0]["dewPoint"]}</div>
             </div>
           </div>
           <div className="weather-param">
@@ -174,6 +191,7 @@ const MainWeather = () => {
               </div>
               <div className="icon-diagram">
                 <UvDi uvIndex={data[0]["uvIndex"]} />
+                
               </div>
             </div>
             <div className="color-frame-layers litle-param">
@@ -182,6 +200,7 @@ const MainWeather = () => {
                 <img src={eye} alt="Visibility Icon" />
               </div>
               <div className="text number-text" id="visi-now">{data[0]["visibility"]}</div>
+              <div className="text litle-param-dop-text" id="visi_state">Сейчас {data[0]["visi_state"]}</div>
             </div>
           </div>
           <div className="weather-param">
@@ -210,6 +229,7 @@ const MainWeather = () => {
                 <img src={degress} alt="Degrees Icon" />
               </div>
               <div className="text litle-param-dop-text" id="feel-now">{data[0]["temperatureC"]}</div>
+              <div className="text litle-param-dop-text" id="weatherSensation">{data[0]["weatherSensation"]}</div>
             </div>
           </div>
         </div>

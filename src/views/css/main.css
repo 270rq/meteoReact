@@ -237,8 +237,11 @@ body {
 
 .icon-diagram {
   position: absolute;
-  top: 25%;
-  left: 10%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 148px;
 }
 
 .date-text {

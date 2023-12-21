@@ -2,7 +2,7 @@ import L from "leaflet";
 import { createControlComponent } from "@react-leaflet/core";
 import "leaflet-routing-machine";
 
-const createRoutineMachineLayer = ({adressA, adressB}) => {
+const createRoutineMachineLayer = ({adressA, adressB, avoidElements}) => {
   const instance = L.Routing.control({
     waypoints: [
       adressA,
@@ -17,9 +17,15 @@ const createRoutineMachineLayer = ({adressA, adressB}) => {
     routeWhileDragging: true,
     draggableWaypoints: true,
     fitSelectedRoutes: true,
-    showAlternatives: false
+    showAlternatives: true
   });
-
+  if (avoidElements) {
+    instance.route({
+      avoid: avoidElements.map((element) => ({
+        polygon: element.toGeoJSON(), // Преобразуем элемент Circle в GeoJSON
+      })),
+    });
+  }
   return instance;
 };
 

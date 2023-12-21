@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import axios from "axios";
 import Map from "./OSMMap";
 import { createRoot } from "react-dom/client";
+import ReactDOM from 'react-dom';
 
 const MapContainer = (props) => {
   const [families, setFamilies] = useState([]);
@@ -85,6 +86,7 @@ const MapContainer = (props) => {
       .then((response) => {
         // Process map data
         setMarkers(response.data);
+        
         console.log(response.data);
       })
       .catch((error) => {

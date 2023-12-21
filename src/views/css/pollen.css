@@ -23,7 +23,89 @@
   width: 293px;
   height: 293px;
   flex-shrink: 0;
+  position: relative;
 }
+
+.di-text {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #FA8D1B;
+  font-family: Inter;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-align: center;
+}
+.i-text{
+  position: absolute;
+  top: 30%;
+  width: 300px;
+height: 42px;
+right: 0;
+}
+.allerg-cont{
+  position: absolute;
+  top: 50%;
+  right: 10%;
+}
+.allerg-icon{
+  display: flex;
+width: 190px;
+justify-content: space-between;
+align-items: flex-start;
+align-content: flex-start;
+row-gap: 29px;
+flex-wrap: wrap;
+}
+.all-icon {
+  position: relative;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.all-icon::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: conic-gradient(from 180deg, #FA8D1B 50%, transparent 0);
+  transform-origin: center;
+  z-index: 1;
+}
+
+.all-icon::after {
+  content: "";
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  background: #30333a;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.all-icon img {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.center-div{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+
 .rec-text {
   position: absolute;
   display: flex;
@@ -106,4 +188,10 @@
   position: absolute;
   top: 10%;
   left: 5%;
+}
+.circle-icon {
+  background-color: red;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
 }

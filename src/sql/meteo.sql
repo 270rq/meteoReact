@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS map (
   name_flower VARCHAR(50) NOT NULL,
   x FLOAT NOT NULL,
   y FLOAT NOT NULL,
-  lvl ENUM('Нет пыльцы', 'Низкий', 'Средний','Высокий','Очень высокий') NOT NULL,
+  lvl INT NOT NULL CHECK (lvl >= 0),
   PRIMARY KEY (day, name_flower, x, y),
   CONSTRAINT fk_flower_name_map FOREIGN KEY (name_flower) REFERENCES flower(name)
 );
