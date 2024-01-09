@@ -1,7 +1,6 @@
 import React from "react";
-import { Doughnut } from "react-chartjs-2";
-import { Chart, ArcElement } from "chart.js";
-
+import Header from "./header";
+import DonutChart from './DoughnutChart';
 import "./css/pollen.css";
 import mask from "./icon/mask.svg";
 import glasses from "./icon/glasses.svg";
@@ -16,58 +15,23 @@ import mushroom from "./icon/mushroom.svg";
 import MapContainer from "./map";
 
 const Pollen = () => {
-  Chart.register(ArcElement);
-  const data = {
-    labels: ["Категория 1", "Категория 2"],
-    datasets: [
-      {
-        data: [30, 40],
-        backgroundColor: ["blue", "grey"],
-        borderWidth: 0,
-      },
-    ],
-  };
-  const options = {
-    layout: {
-      padding: 10,
-    },
-
-    plugins: {
-      legend: false,
-      datalabels: {
-        display: false,
-      },
-    },
-
-    maintainAspectRatio: false,
-    responsive: true,
-    rotation: -90,
-    cutoutPercentage: 40,
-    circumference: 180,
-  };
-
-  return (
+ 
+  return (<>
+    <Header/> 
     <div className="center-div">
     <div className="main-cont">
       <div className="inf">
         <div className="inform">
-          <div className="di" style={{ width: "200px", height: "200px" }}>
-            <Doughnut
-              plugins={[
-                {
-                  beforeDraw: function (chart) {
-                    const datasetMeta = chart.getDatasetMeta(0);
-                    datasetMeta.data[1].outerRadius = 75;
-                    datasetMeta.data[1].innerRadius = 55;
-                  },
-                },
-              ]}
-              data={data}
-              options={options}
-            />
+          <div className="di" >
+          <DonutChart width={300} height={300} items={[
+	{value: 12, color: 'orange'},
+  {value: 12, color: 'gray'},
+
+]} innerRadius={120} outerRadius={140} />
+          
             <div className="di-text">
-              Сильно
-              <div className="text di-text2">Основной аллерген: Гриб</div>
+              Сильно <br/>
+              <span className="text di-text2">Основной аллерген: Гриб</span>
             </div>
           </div>
           <div className="text i-text">
@@ -75,16 +39,16 @@ const Pollen = () => {
           </div>
           <div className="allerg-cont">
             <div className="allerg-icon">
-              <div className="all-icon">
+              <div className="all-icon" style={{ '--strength': '79%' }}>
                 <img alt="Wheat Icon" src={wheat}></img>
               </div>
-              <div className="all-icon">
+              <div className="all-icon" style={{ '--strength': '59%' }}>
                 <img alt="Grass Icon" src={grass}></img>
               </div>
-              <div className="all-icon">
+              <div className="all-icon"  style={{ '--strength': '99%' }}>
                 <img alt="Tree Icon" src={tree}></img>
               </div>
-              <div className="all-icon">
+              <div className="all-icon"  style={{ '--strength': '19%' }}>
                 <img alt="Mushroom Icon" src={mushroom}></img>
               </div>
             </div>
@@ -128,7 +92,7 @@ const Pollen = () => {
         </div>
       </div>
       <MapContainer />
-    </div></div>
+    </div></div></>
   );
 };
 

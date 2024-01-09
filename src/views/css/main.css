@@ -1,490 +1,556 @@
 body {
-  background-color: #191b1f;
-  margin: 0;
-  padding: 0;
+    background-color: #191b1f;
+    margin: 0;
+    padding: 0;
+   
 }
+body,
+html{
+    width: 100%;
+    height: 100%;
+}
+#root{
+    height: 100%;
+    width: 100%;
+}
+.litle-param-down-cont {
+    position: relative;
+    width: 90%;
+    height: 2rem;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
 
+}
 .frame {
-  box-sizing: border-box;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  width: 95%;
-  margin-left: 5rem;
-  gap: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    margin-left: 5rem;
+    gap: 20px;
+    margin-bottom: 1rem;
 }
 
 .main-weather {
-  margin-top: 1.5rem;
-  width: 88%;
-  max-width: 444px;
-  height: fit-content;
-  position: relative;
-  margin-left: 0;
+    margin-top: 1.5rem;
+    width: 88%;
+    max-width: 444px;
+    height: fit-content;
+    position: relative;
+    margin-left: 0;
 }
 
 .weather-icon {
-  position: absolute;
-  top: 30%;
-  left: 10%;
+    position: absolute;
+    top: 30%;
+    left: 10%;
 }
 
-.weather,
-.meta {
-  position: relative;
-  width: 100%;
+.meta,
+.weather {
+    position: relative;
+
 }
 
 .weather {
-  height: 245px;
-  border-radius: 20px 20px 0 0;
+    height: 245px;
+    border-radius: 20px 20px 0 0;
 }
 
 .meta {
-  height: 77px;
-  margin-top: 0.5rem;
-  border-radius: 0 0 20px 20px;
+    height: 77px;
+    margin-top: 0.5rem;
+    border-radius: 0 0 20px 20px;
 }
 
 .main-other {
-  min-width: 365px;
-  margin-left: 2rem;
-  position: relative;
-  margin-top: 1.5rem;
-  width: fit-content;
-  height: fit-content;
-  border-radius: 20px;
-  display: inline-flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+    min-width: 365px;
+    margin-left: 2rem;
+    position: relative;
+    margin-top: 2.3rem;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 20px;
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .day-text {
-  width: 86px;
-  top: 12px;
-  left: 21px;
-  font-size: 16px;
-  position: absolute;
+    width: 86px;
+    top: 12px;
+    left: 21px;
+    font-size: 16px;
+    position: absolute;
 }
 
 .weather-param {
-  margin-top: 50px;
-  margin-left: 10px;
-  margin-right: 10px;
-  height: 275px;
-  width: 282px;
+    margin-top: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 275px;
+    width: 282px;
 }
 
 .big-param {
-  width: 100%;
-  height: 188px;
-  position: relative;
-  border-radius: 1rem;
+    width: 100%;
+    height: 188px;
+    position: relative;
+    border-radius: 1rem;
 }
 
 .big-param-text {
-  position: absolute;
-  font-size: 16px;
-  margin-left: 30px;
-  top: 7.5%;
+    position: absolute;
+    font-size: 16px;
+    margin-left: 30px;
+    top: 7.5%;
 }
-
+.icon-flex {
+    height: 15px;
+}
 .sun-text {
-  color: #ffc62d;
-  margin-left: 1rem;
-  font-size: 10px;
-  position: absolute;
-  font-family: "Inter-Regular", Helvetica;
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: normal;
+    color: #ffc62d;
+    font-size: 10px;
+    font-family: "Inter-Regular", Helvetica;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: normal;
 }
 
 .big-param .vos {
-  top: 150px;
-  left: 0;
+    top: 150px;
+    left: 0;
 }
 
 .big-param .zah {
-  top: 150px;
-  right: 15px;
+    top: 150px;
+    right: 15px;
 }
 
 .litle-param {
-  position: relative;
-  width: 100%;
-  margin-top: 10px;
-  height: 70px;
-  border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+    height: 70px;
+    border-radius: 1rem;
 }
 
 .litle-param-text {
-  position: absolute;
-  font-size: 16px;
-  margin-left: 30px;
-  top: 10%;
+    font-size: 16px;
+    margin-left: 30px;
+    padding-top: 2%;
+    width: 100%;
+    text-align: start;
+}
+.search-cont ul {
+    list-style-type: none;
+    padding: 0;
+    display: none;
+    height: 9rem;
+    overflow: auto !important;
+}
+.search-cont ul::-webkit-scrollbar {
+    width: 0.5em;
+    /* Ширина полосы прокрутки */
 }
 
+.search-cont ul::-webkit-scrollbar-track {
+    background-color: transparent;
+    /* Цвет фона дорожки прокрутки */
+}
+
+.search-cont ul::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    /* Цвет полосы прокрутки */
+}
+.search-cont ul::-webkit-scrollbar-thumb:hover {
+    background-color: transparent;
+    /* Цвет полосы прокрутки при наведении */
+}
+.search-cont:hover ul {
+    display: block;
+}
+
+/* Стили для элемента списка */
+.search-cont ul li {
+    background-color: #2f3640;
+    border: 1px solid #444952;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    width: 15rem;
+}
+
+/* Стили для текста региона и города */
+.search-cont ul li span {
+    font-weight: bold;
+}
+
+/* Стили при наведении */
+.search-cont ul li:hover {
+    background-color: #3c4552;
+    cursor: pointer;
+}
 .days-weather-container {
-  position: relative;
-  width: 100%;
-  max-width: 444px;
-  height: 320px;
+    position: relative;
+    width: 100%;
+    max-width: 444px;
+    height: 320px;
 }
 
 .days-weather {
-  width: 100%;
-  margin-top: 2rem;
-  height: 302px;
-  border-radius: 1rem;
-  overflow: auto;
+    width: 100%;
+    margin-top: 2rem;
+    height: 302px;
+    border-radius: 1rem;
+    overflow: hidden;
 }
 
 .days-text {
-  margin-left: 1rem;
-  font-size: 16px;
-  position: absolute;
-  left: 2%;
+    margin-left: 1rem;
+    font-size: 16px;
+    position: absolute;
+    left: 2%;
 }
 
-.frame-profile {
-  background-color: #444952;
-  height: 674px;
-  width: 83px;
-}
+
 
 .side-header {
-  position: fixed;
-  top: -95vh;
-  transition: top 0.3s;
-  left: 10px;
-  width: 38px;
-  height: 95vh;
-  background-color: #30333a;
-  padding: 20px;
-  z-index: 9999;
-  border-radius: 1rem;
-}
-
-.side-header.active {
-  top: 0;
-  /* Показать header при активном состоянии */
+    position: fixed;
+    transition: top 0.3s;
+    left: 10px;
+    width: 38px;
+    height: 95vh;
+    background-color: #30333a;
+    padding: 20px;
+    z-index: 9999;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Используйте justify-content вместо align-content */
+    align-items: center; 
 }
 
 .icon {
-  position: absolute;
-}
-
-.dop-i {
-  left: 50%;
-  top: 30px;
+    position: absolute;
 }
 
 .degress {
-  right: 230px;
-  top: 36px;
+    display: flex;
+    gap: 10px;
 }
 
 .sunrise {
-  left: 20px;
-  top: 130px;
+    left: 20px;
+    top: 130px;
 }
 
 .sunset {
-  right: 18px;
-  top: 130px;
-}
-
-.icon-line {
-  position: absolute;
-  top: 110px;
+    right: 18px;
+    top: 130px;
 }
 
 .icon-map {
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  top: 10px;
-  left: 15px;
+
+    width: 25px;
+    height: 25px;
+
 }
 
 .icon-date {
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  top: 43px;
-  left: 15px;
+
+    width: 25px;
+    height: 25px;
+
 }
 
 .profile-button {
-  position: absolute;
-  top: 93%;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #444952;
-  border-radius: 3rem;
-}
-
-.time-text {
-  margin-left: 1rem;
-  font-size: 11px;
-  position: absolute;
-  top: 15px;
-  left: 70px;
+    background-color: #444952;
+    border-radius: 3rem;
 }
 
 .icon-diagram {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 200px;
-  height: 148px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 148px;
 }
 
 .date-text {
-  position: absolute;
-  left: 70px;
-  top: 65px;
-  font-size: 16px;
+    font-size: 16px;
 }
 .search-cont {
-  position: absolute;
-  right: 5%;
-  top: 5%;
+    position: absolute;
+    right: 5%;
+    top: 5%;
+    display: flex;
+    flex-direction: column;
+    place-items: flex-end;
 }
 
 .search {
-  display: flex;
-  height: 40px;
-  border-radius: 40px;
-  padding: 10px;
-  width: fit-content;
+    display: flex;
+    height: 40px;
+    border-radius: 40px;
+    padding: 10px;
+    width: fit-content;
 }
 
 .search-button {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  background: #2f3640;
-  justify-content: center;
-  align-items: center;
-  transition: 0.4s;
-  color: #ffffff;
-  cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    background: #2f3640;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+    color: #ffffff;
+    cursor: pointer;
 }
 
 .search-button > i {
-  font-size: 30px;
+    font-size: 30px;
 }
-
 .search:hover > .search_city {
-  width: 240px;
-  padding: 0 6px;
+    width: 240px;
+    padding: 0 6px;
 }
 
 .search_city {
-  border: none;
-  background: none;
-  outline: none;
-  padding: 0;
-  color: #ffffff;
-  font-size: 16px;
-  transition: 0.4s;
-  line-height: 40px;
-  width: 0;
-  font-weight: bold;
+    border: none;
+    background: none;
+    outline: none;
+    padding: 0;
+    color: #ffffff;
+    font-size: 16px;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 0;
+    font-weight: bold;
 }
 
 .geo-text {
-  position: absolute;
-  left: 70px;
-  top: 25px;
-  font-size: 16px;
+    font-size: 16px;
 }
 
 .temp-text {
-  position: absolute;
-  left: 10%;
-  top: 60%;
-  font-size: 36px;
+    position: absolute;
+    left: 10%;
+    top: 60%;
+    font-size: 36px;
 }
 
 .wind_speed-text {
-  position: absolute;
-  left: 10%;
-  top: 70%;
-  font-size: 24px;
+    position: absolute;
+    left: 10%;
+    top: 70%;
+    font-size: 24px;
 }
 .compas {
-  
-  position: absolute;
-  left: 52%;
-  transform: translateX(-50%);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.compas-cont-placer {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
 }
 .compas-cont {
-  position: relative;
+    position: relative;
+    width: 140px;
+    height: 140px;
 }
 .compas-arrow {
-  animation-name: rotate;
-  animation-duration: 2s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  position: absolute;
-  transform: translateX(-50%);
-  left: 50%;
+    animation-name: rotate;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    position: absolute;
+    transform: translateX(-50%) rotate(var(--rotation-angle));
+
+    left: 50%;
 }
 @keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: translateX(-50%) rotate(0deg);
+    }
+    to {
+        transform: translateX(-50%) rotate(var(--rotation-angle));
+    }
 }
 
 .number-text {
-  position: absolute;
+    /* position: absolute;
   left: 10%;
-  top: 60%;
-  font-size: 24px;
+  top: 60%; */
+    height: fit-content;
+    width: fit-content;
+    font-size: 24px;
 }
 
 .uv-text {
-  position: absolute;
-  left: 45%;
-  top: 70%;
-  font-size: 24px;
+    position: absolute;
+    left: 45%;
+    top: 70%;
+    font-size: 24px;
 }
 .icon-sunline {
-  position: absolute;
-  width: 220px;
-  height: 170px;
-  top: 25%;
-  left: 50%;
-  transform: translateX(-50%);
+    position: absolute;
+    width: 220px;
+    height: 170px;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
 }
-.sun-icon{
-  position: absolute;
-  top: 50%;
-transform: translateY(-50%);
-  left: 0;
+.sun-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+}
+.sun-icon-cont {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.dop-i {
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: self-start;
+}
 
-}
-.sun-icon-cont{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  
-}
 .sunrise-text,
 .sunset-text {
-  position: absolute;
-  font-size: 14px;
-  font-weight: bold;
+    font-size: 14px;
+    font-weight: bold;
 }
 
-.dop-txt {
-  display: inline;
-  font-size: 14px;
+.sunrise,
+.sunset {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.sunrise img,
+.sunset img {
+    width: 15px;
 }
 
 .litle-param-dop-text {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  font-size: 12px;
+    height: fit-content;
+    width: 8rem;
+    font-size: 12px;
+    text-align: start;
 }
 
 .hour-weather-container {
-  position: relative;
-  height: 21rem;
-  margin-left: 2rem;
-  width: 57rem;
+    position: relative;
+    height: 21rem;
+    margin-left: 2rem;
+    width: 57rem;
+}
+.hour-placer {
+    margin-top: 1rem;
+    width: 100%;
+    border-radius: 20px;
+    height: 90%;
+    place-items: center;
+    justify-content: center;
+    display: flex;
 }
 
 .param {
-  position: absolute;
-  display: flex;
-  width: 87%;
-  height: 73%;
-  margin-top: 2.6rem;
-  padding: 29px 56px 29px 56px;
-  justify-content: space-between; /* Changed from center to space-between */
-  align-items: flex-start;
-  gap: 30px;
-  flex-shrink: 0;
-  border-radius: 20px;
+    display: flex;
+    width: 90%;
+    height: 90%;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
 .lit-param {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 240px;
-  height: 99%;
-  border-radius: 10px;
-  margin-right: 5px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90px;
+    height: 85%;
+    border-radius: 10px;
+    margin-right: 5px;
+    flex-direction: column;
 }
-.time {
-  position: absolute;
-  flex-shrink: 0;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+.date {
+    width: 96px;
 }
-.sun-col {
-  position: absolute;
-  flex-shrink: 0;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
+.lit-param,
+.week-weather-list {
+    list-style-type: none;
+    padding-inline-start: 0;
 }
-.temp {
-  position: absolute;
-  flex-shrink: 0;
-  top: 30%;
-  left: 50%;
-  transform: translateX(-50%);
+.week-weather-list li {
+    display: flex;
+    margin-top: 0.5rem;
+    align-items: center;
+    justify-content: space-around;
+}
+.meta li {
+    display: flex;
+    margin-top: 0.6rem;
+    align-items: center;
+    column-gap: 10px;
 }
 .hour-text {
-  position: absolute;
-  top: 3%;
-  left: 2%;
-  width: 175px;
-  height: 20px;
-  flex-shrink: 0;
+    text-align: start;
+    margin-left: 3rem;
 }
-.week-weather{
-  display: flex;
-flex-direction: column;
-justify-content: space-between;
-align-items: flex-start;
+@media (max-width: 1475px) {
+    .main-other {
+        width: 90%;
+        margin-left: 0;
+    }
+    .hour-weather-container {
+        width: calc(100% - 6rem);
+    }
+    .hour-placer {
+        width: 97%;
+    }
 }
 @media (max-width: 768px) {
-  .frame {
-    margin: auto 20px;
-  }
+    .frame {
+        margin: auto 20px;
+    }
 
-  .main-weather {
-    width: 100%;
-    max-width: none;
-  }
+    .main-weather {
+        width: 100%;
+        max-width: none;
+    }
 
-  .main-other {
-    width: 100%;
-    margin-left: 0;
-  }
+    .main-other {
+        width: 100%;
+        margin-left: 0;
+    }
 
-  .now-weather {
-    width: 90%;
-  }
-
-  .days-weather-container {
-    margin-left: 0;
-  }
+    .days-weather-container {
+        margin-left: 0;
+    }
+    .hour-weather-container {
+        width: 100%;
+        margin-left: 0;
+    }
 }

@@ -28,37 +28,41 @@
 
 .di-text {
   position: absolute;
-  top: 70%;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  color: #FA8D1B;
+  transform: translate(-50%, -50%);
+  color: #fa8d1b;
   font-family: Inter;
   font-size: 32px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   text-align: center;
+  width: 100%;
 }
-.i-text{
+.di-text2{
+  font-size: 1rem;
+}
+.i-text {
   position: absolute;
   top: 30%;
   width: 300px;
-height: 42px;
-right: 0;
+  height: 42px;
+  right: 0;
 }
-.allerg-cont{
+.allerg-cont {
   position: absolute;
   top: 50%;
   right: 10%;
 }
-.allerg-icon{
+.allerg-icon {
   display: flex;
-width: 190px;
-justify-content: space-between;
-align-items: flex-start;
-align-content: flex-start;
-row-gap: 29px;
-flex-wrap: wrap;
+  width: 190px;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: flex-start;
+  row-gap: 29px;
+  flex-wrap: wrap;
 }
 .all-icon {
   position: relative;
@@ -75,7 +79,7 @@ flex-wrap: wrap;
   left: 0;
   width: 100%;
   height: 100%;
-  background: conic-gradient(from 180deg, #FA8D1B 50%, transparent 0);
+  background: conic-gradient(from 180deg, #fa8d1b var(--strength), transparent 0);
   transform-origin: center;
   z-index: 1;
 }
@@ -99,29 +103,27 @@ flex-wrap: wrap;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.center-div{
+.center-div {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  margin-left: 5%;
+    width: 90%;
 }
 
-
 .rec-text {
-  position: absolute;
   display: flex;
   justify-content: center;
-  align-items: center; /* Добавьте это свойство для выравнивания по вертикали */
+  align-items: center;
   gap: 33px;
   flex-shrink: 0;
   flex-wrap: wrap;
   width: 640px;
-  height: 307px;
-  top: 50%;
-  transform: translateY(-50%);
+  height: 100%;
 }
 .cont {
   width: 262px;
-  height: 41px;
+  height: fit-content;
   display: flex;
   flex-shrink: 0;
 }
@@ -137,19 +139,15 @@ flex-wrap: wrap;
   margin-left: 2.1rem;
   margin-right: 1rem;
 }
-.leaflet-control-container .leaflet-routing-container-hide {
-  display: none;
-}
 #map {
   position: absolute;
   width: 100%;
   height: 100%;
   border-radius: 20px;
   overflow: hidden;
-  
 }
 
-.select-pos{
+.select-pos {
   width: 172px;
   height: 250px;
   position: absolute;
@@ -181,17 +179,11 @@ flex-wrap: wrap;
   margin-top: 1rem;
 }
 .pos2,
-.pos1{
+.pos1 {
   margin-top: 1rem;
 }
 .di {
   position: absolute;
   top: 10%;
   left: 5%;
-}
-.circle-icon {
-  background-color: red;
-  border-radius: 50%;
-  width: 16px;
-  height: 16px;
 }

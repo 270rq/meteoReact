@@ -1,24 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { MapContainer, TileLayer, Circle, Popup } from "react-leaflet";
-import axios from "axios";
 import RoutineMachine from "./createRoutingMachine";
 import L from "leaflet";
 const Map = ({ selectedAllergen, adressA, adressB, markers }) => {
-  const [allergenIntensity, setAllergenIntensity] = useState(null);
   console.log(markers);
-  useEffect(() => {
-    if (selectedAllergen) {
-      axios
-        .get(`api_url/allergen/${selectedAllergen}`)
-        .then((response) => {
-          setAllergenIntensity(response.data.intensity);
-        })
-        .catch((error) => {
-          console.error("Error fetching allergen intensity: ", error);
-        });
-    }
-  }, [selectedAllergen]);
-  function getPollinationColor(plantType,plantName, level) {
+
+  function getPollinationColor(plantType, plantName, level) {
     if (plantType === "Деревья") {
       if (level >= 11 && level <= 100) {
         return "#00FF00"; // Зеленый
@@ -29,7 +16,7 @@ const Map = ({ selectedAllergen, adressA, adressB, markers }) => {
       } else {
         return "#FFA500"; // Оранжевый
       }
-    } else if (plantType === "Злаки"  || plantType === "Травы") {
+    } else if (plantType === "Злаки" || plantType === "Травы") {
       if (level >= 1 && level <= 10) {
         return "#00FF00"; // Зеленый
       } else if (level > 10 && level <= 30) {
@@ -62,9 +49,8 @@ const Map = ({ selectedAllergen, adressA, adressB, markers }) => {
     } else {
       return "#FFFFFF";
     }
-  };
-  
-  
+  }
+
   const avoidElements = markers.map((marker) =>
     L.circle([marker.x, marker.y], { radius: 5000 })
   );
@@ -81,7 +67,11 @@ const Map = ({ selectedAllergen, adressA, adressB, markers }) => {
       />
       {markers.map((marker) => (
         <Circle
-        color={getPollinationColor(marker["family"],marker['nameFlower'],marker['lvl'])}
+          color={getPollinationColor(
+            marker["family"],
+            marker["nameFlower"],
+            marker["lvl"]
+          )}
           key={`${marker["x"]} ${marker["y"]}`}
           center={[marker["x"], marker["y"]]}
           radius={5000}

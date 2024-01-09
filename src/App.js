@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import MainWeather from './views/mainWeather'
 import './views/css/style.css'
