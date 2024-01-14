@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./css/profile.css";
 import defAvatar from "./img/default_avatar.jpg";
 import Header from "./header";
-
+import exitIcon from "./icon/exit.svg"
+import root from "../index";
+import RegLog from "./regLog";
 const serverUrl = "https://localhost:7024";
 
 function Profile() {
@@ -24,7 +26,26 @@ function Profile() {
         }
         fetchData();
     }, []);
+    const handleLogout = async () => {
+        try {
+            const response = await fetch(`${serverUrl}/user/loginReg/logout`, {
+                method: "POST",
+                credentials: "include",
+                mode: "cors",
+            });
 
+            if (!response.ok) {
+                console.error(response);
+            } else {
+                localStorage.removeItem("allergen");
+                console.log(response);
+                root.render(<RegLog/>);
+
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
     const updateAllergen = async () => {
         try {
             const response = await fetch(`${serverUrl}/user/loginReg/allerg?flower=${selectedAllergen}`, {
@@ -48,7 +69,10 @@ function Profile() {
             <Header />
             <div className="profile-placer">
                 <div className="frame-profile">
+                    <div className="title-container">
                     <div className="title text">Личные данные</div>
+                    <img onClick={handleLogout} src={exitIcon} alt="logout" />
+                    </div>
                     <div className="Persona-data">
                         <div className="avatar-container">
                             <label htmlFor="avatar-input" id="avatar">

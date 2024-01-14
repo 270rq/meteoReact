@@ -3,6 +3,7 @@ import { createControlComponent } from "@react-leaflet/core";
 import "leaflet-routing-machine";
 
 const createRoutineMachineLayer = ({adressA, adressB, avoidElements}) => {
+  
   const instance = L.Routing.control({
     waypoints: [
       adressA,
@@ -10,14 +11,13 @@ const createRoutineMachineLayer = ({adressA, adressB, avoidElements}) => {
     ],
     lineOptions: {
       styles: [{ color: "#000000", weight: 4 }],
-      addWaypoints:true,
+      addWaypoints:false,
     },
     show: false,
-    addWaypoints: false,
     routeWhileDragging: true,
     draggableWaypoints: true,
     fitSelectedRoutes: true,
-    showAlternatives: true
+    showAlternatives: false
   });
   if (avoidElements) {
     instance.route({

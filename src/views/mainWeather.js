@@ -284,7 +284,7 @@ const MainWeather = () => {
         </div>
     </div> < div className = "color-frame-layers litle-param" > <div className="text litle-param-text">Видимость</div> < div className = "litle-param-down-cont" > <div className="text number-text" id="visi-now">
         {weatherData[0]["visibility"]}
-        km
+        км
     </div> < div className = " dop-i" > <img src={eye} alt="Visibility Icon"/> < div className = "text litle-param-dop-text" id = "visi_state" > Сейчас {weatherData[0]["visi_state"]
     } </div>
                 </div > </div> </div>

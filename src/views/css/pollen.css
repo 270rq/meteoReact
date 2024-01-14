@@ -71,7 +71,12 @@
   border-radius: 50%;
   overflow: hidden;
 }
-
+.leaflet-control-attribution{
+  display: none;
+}
+.leaflet-routing-alternatives-container{
+  display: none
+}
 .all-icon::before {
   content: "";
   position: absolute;

@@ -3,6 +3,9 @@ import {useSpring, animated} from "react-spring";
 import logSVG from "./icon/login.svg";
 import "./css/profile.css";
 import Header from "./header";
+import root from "../index";
+import Profile from "./profile";
+
 
 const serverUrl = "https://localhost:7024";
 
@@ -122,8 +125,8 @@ function RegLog() {
                 body: JSON.stringify(loginData)
             });
             if (response.ok) {
-                const responseJson = await response.json();
-                console.log("Token saved in cookie:", responseJson);
+                root.render(<Profile/>)
+                console.log("Succses");
             }
         } catch (error) {
             console.error(error);
@@ -152,8 +155,8 @@ function RegLog() {
                 body: JSON.stringify(regData)
             });
             if (response.ok) {
-                const responseJson = await response.json();
-                console.log("Token saved in cookie:", responseJson);
+                root.render(<Profile/>)
+                console.log("Succses");
             }
         } catch (error) {
             console.log(error)

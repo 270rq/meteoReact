@@ -2,7 +2,7 @@ import React from "react";
 import { MapContainer, TileLayer, Circle, Popup } from "react-leaflet";
 import RoutineMachine from "./createRoutingMachine";
 import L from "leaflet";
-const Map = ({ selectedAllergen, adressA, adressB, markers }) => {
+const Map = ({ adressA, adressB, markers }) => {
   console.log(markers);
 
   function getPollinationColor(plantType, plantName, level) {
@@ -63,7 +63,7 @@ const Map = ({ selectedAllergen, adressA, adressB, markers }) => {
     >
       <TileLayer
         url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"
-        attribution="Tiles &copy; Esri &mdash; Sources: GEBCO, NOAA, CHS, OSU, UNH, CSUMB, National Geographic, DeLorme, NAVTEQ, and Esri"
+       
       />
       {markers.map((marker) => (
         <Circle
@@ -81,12 +81,13 @@ const Map = ({ selectedAllergen, adressA, adressB, markers }) => {
           </Popup>
         </Circle>
       ))}
-      <RoutineMachine
-        adressA={adressA}
-        adressB={adressB}
-        avoidElements={avoidElements}
-      />
-    </MapContainer>
+      
+{adressA[0]&&adressA[1]&&adressB[0]&&adressB[1]  &&  <RoutineMachine
+      adressA={adressA}
+      adressB={adressB}
+      avoidElements={avoidElements}
+    />
+}    </MapContainer>
   );
 };
 
